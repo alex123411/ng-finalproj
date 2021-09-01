@@ -21,20 +21,20 @@ export class ProfileService {
   }
 
   findUsersByNickname(nickname: string){
-    return this.http.post<any>(this.findUsersByNicknameURL, {"nickname": nickname}, {responseType: 'json'})
+    return this.http.post<any>(this.findUsersByNicknameURL, {"nickname": nickname})
   }
 
   sendFriendRequest(nickname : string | undefined){
-    return this.http.post<any>(this.sendFriendRequestURL, {"nickname": nickname}, {responseType: 'json'})
+    return this.http.post<any>(this.sendFriendRequestURL, {"nickname": nickname})
   }
 
   removeFriend(nickname : string | undefined){
-    return this.http.post<any>(this.removeFriendURL, {"nickname": nickname}, {responseType: 'json'})
+    return this.http.post<any>(this.removeFriendURL, {"nickname": nickname})
   }
   acceptFriend(nickname : string | undefined){
-    return this.http.post<any>(this.acceptFriendURL, {"nickname": nickname} , {responseType: 'json'})
+    return this.http.post<any>(this.acceptFriendURL, {"nickname": nickname} )
   } 
   rejectFriend(nickname : string | undefined){
-    return this.http.post<any>(this.rejectFriendURL, {"nickname": nickname}, {responseType: 'json'})
+    return this.http.post<any>(this.rejectFriendURL, {"nickname": nickname})
   }
 }

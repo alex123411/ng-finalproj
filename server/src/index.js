@@ -22,7 +22,7 @@ app.use(morgan('tiny'));
 
 app.use(express.static(staticPath));
 
-app.get(['', '/login', '/profile', '/library', '/friends', '/games'], (req, res) => {
+app.get(['', '/login', '/profile', '/library', '/friends', '/games', '/register'], (req, res) => {
     res.sendFile(path.join(staticPath, 'index.html'));
   });
 

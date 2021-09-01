@@ -6,7 +6,8 @@
     "start": "node server/src/index",
     "start:dev": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "postinstall": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -23,15 +24,16 @@
     "@popperjs/core": "^2.9.3",
     "ajv": "^6.9.1",
     "bootstrap": "^5.1.0",
-    "mongoose": "^5.13.8",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.2.0",
-    "zone.js": "~0.11.4",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "email-validator": "^2.0.4",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.10.0"
+    "mongoose": "^5.13.8",
+    "morgan": "^1.10.0",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.2.0",
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.1.4",

@@ -19,9 +19,9 @@ export class GamesService {
   constructor(private http: HttpClient) { }
 
   getGames() {
-    return this.http.get<any>(this.getGamesURL)
+    return this.http.get<any>(this.getGamesURL, {responseType: 'json'})
   }
   addGameToUserLibrary(game: Game){
-    return this.http.post<any>(this.addGameToUserLibraryUrl, game)
+    return this.http.post<any>(this.addGameToUserLibraryUrl, game, {responseType: 'json'})
   }
 }

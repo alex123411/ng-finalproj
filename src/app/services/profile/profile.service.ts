@@ -17,24 +17,24 @@ export class ProfileService {
   constructor(private http: HttpClient) { }
 
   getUserInfo(){
-    return this.http.get<any>(this.getUserInfoURL)
+    return this.http.get<any>(this.getUserInfoURL, {headers: { 'type': 'json'}} )
   }
 
   findUsersByNickname(nickname: string){
-    return this.http.post<any>(this.findUsersByNicknameURL, {"nickname": nickname})
+    return this.http.post<any>(this.findUsersByNicknameURL, {"nickname": nickname}, {responseType: 'json'})
   }
 
   sendFriendRequest(nickname : string | undefined){
-    return this.http.post<any>(this.sendFriendRequestURL, {"nickname": nickname})
+    return this.http.post<any>(this.sendFriendRequestURL, {"nickname": nickname}, {responseType: 'json'})
   }
 
   removeFriend(nickname : string | undefined){
-    return this.http.post<any>(this.removeFriendURL, {"nickname": nickname})
+    return this.http.post<any>(this.removeFriendURL, {"nickname": nickname}, {responseType: 'json'})
   }
   acceptFriend(nickname : string | undefined){
-    return this.http.post<any>(this.acceptFriendURL, {"nickname": nickname})
+    return this.http.post<any>(this.acceptFriendURL, {"nickname": nickname} , {responseType: 'json'})
   } 
   rejectFriend(nickname : string | undefined){
-    return this.http.post<any>(this.rejectFriendURL, {"nickname": nickname})
+    return this.http.post<any>(this.rejectFriendURL, {"nickname": nickname}, {responseType: 'json'})
   }
 }

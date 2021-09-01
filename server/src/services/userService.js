@@ -130,7 +130,7 @@ const acceptFriend = async (userId, nickname) => {
     throw new badRequestError(err.message)
   }
 }
-const rejectfriend = async (userId, nickname) => {
+const rejectFriend = async (userId, nickname) => {
   try {
     let i = 0;
     const userWhoRejects = await User.findById(userId);
@@ -156,5 +156,5 @@ module.exports = {
   sendFriendRequest,
   removeFriend,
   acceptFriend,
-  rejectfriend,
+  rejectFriend,
 };

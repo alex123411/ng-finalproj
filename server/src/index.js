@@ -4,6 +4,8 @@ const morgan = require('morgan')
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const cookieParser = require('cookie-parser');
+
 app.use(cors());
 
 const {authRouter} = require('./controllers/authController'); 
@@ -11,6 +13,8 @@ const {userRouter} = require('./controllers/userController');
 const {gameRouter} = require('./controllers/gameController'); 
 
 const {authMiddleware} = require('./middlewares/authMiddleware'); 
+
+const staticPath = path.join(__dirname + '../../../dist/steam');
 
 
 app.use(express.json());
@@ -22,6 +26,13 @@ app.use('/api/games', gameRouter);
 app.use(authMiddleware);
 
 app.use('/api/user', userRouter);
+
+app.use(express.static(staticPath));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(staticPath, 'index.html'));
+  });
+
+
 
 
 const start = async () => {

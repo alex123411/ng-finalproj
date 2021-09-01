@@ -6,8 +6,7 @@
     "start": "node server/src/index",
     "start:dev": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "postinstall": "ng build --aot --prod"
+    "watch": "ng build --watch --configuration development"
   },
   "private": true,
   "dependencies": {

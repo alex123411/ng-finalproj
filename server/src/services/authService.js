@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt')
 const {badRequestError} = require('../errors')
 
 const {User} = require('../models/userModel');
@@ -10,7 +9,7 @@ const registration = async ({nickname, email, password}) => {
 
     const user = new User({
         email,
-        password: await bcrypt.hash(password, 10),
+        password,
         nickname,
     });
     await user.save();
@@ -19,7 +18,7 @@ const registration = async ({nickname, email, password}) => {
 const logIn = async ({email, password}) => {
     const user = await User.findOne({email});
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !(password == user.password)) {
         throw new badRequestError('wrong email or password');
     }
 

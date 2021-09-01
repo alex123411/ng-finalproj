@@ -3,8 +3,8 @@ node_js:
 - '10'
 
 before_install:
-- npm install -g @angular/cli
-install: npm install
+- ./steam npm install -g @angular/cli
+install: ./server npm install
 
 branches:
   only: 

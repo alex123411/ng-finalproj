@@ -20,6 +20,8 @@ const staticPath = path.join(__dirname + '../../../dist/steam');
 app.use(express.json());
 app.use(morgan('tiny'));
 
+app.use(express.static(staticPath));
+
 app.use('/api/auth', authRouter);
 app.use('/api/games', gameRouter);
 
@@ -27,7 +29,6 @@ app.use(authMiddleware);
 
 app.use('/api/user', userRouter);
 
-app.use(express.static(staticPath));
 app.get('*', (req, res) => {
     res.sendFile(path.join(staticPath, 'index.html'));
   });

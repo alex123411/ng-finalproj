@@ -7,12 +7,12 @@ import { User } from 'src/app/auth/service/auth.service';
 })
 export class ProfileService {
 
-  private getUserInfoURL = 'http://localhost:8081/api/user/';
-  private findUsersByNicknameURL = 'http://localhost:8081/api/user/find';
-  private sendFriendRequestURL = 'http://localhost:8081/api/user/sendfriendrequest';
-  private removeFriendURL = 'http://localhost:8081/api/user/removefriend';
-  private acceptFriendURL = 'http://localhost:8081/api/user/acceptfriend';
-  private rejectFriendURL = 'http://localhost:8081/api/user/rejectfriend';
+  private getUserInfoURL = '/api/user/';
+  private findUsersByNicknameURL = '/api/user/find';
+  private sendFriendRequestURL = '/api/user/sendfriendrequest';
+  private removeFriendURL = '/api/user/removefriend';
+  private acceptFriendURL = '/api/user/acceptfriend';
+  private rejectFriendURL = '/api/user/rejectfriend';
 
   constructor(private http: HttpClient) { }
 

@@ -10,7 +10,7 @@ const {
     sendFriendRequest,
     removeFriend,
     acceptFriend,
-    rejectfriend,
+    rejectFriend,
 } = require('../services/userService');
 
 router.delete('/', async (req, res) => {

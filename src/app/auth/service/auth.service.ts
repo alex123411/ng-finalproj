@@ -20,8 +20,8 @@ export interface User{
 
 export class AuthService {
 
-  private registerURL = 'http://localhost:8081/api/auth/register';
-  private loginURL = 'http://localhost:8081/api/auth/login';
+  private registerURL = '/api/auth/register';
+  private loginURL = '/api/auth/login';
 
   constructor(private http: HttpClient) { }
 

@@ -13,8 +13,8 @@ export interface Game{
 })
 export class GamesService {
 
-  private getGamesURL = 'http://localhost:8081/api/games/all';
-  private addGameToUserLibraryUrl = 'http://localhost:8081/api/user/addgame'
+  private getGamesURL = '/api/games/all';
+  private addGameToUserLibraryUrl = '/api/user/addgame'
 
   constructor(private http: HttpClient) { }
 

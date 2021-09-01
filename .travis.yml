@@ -4,7 +4,7 @@ node_js:
 
 before_install:
 - npm install -g @angular/cli
-install: ./server npm install
+install: npm install
 
 branches:
   only: 
@@ -12,6 +12,6 @@ branches:
 
 deploy:
   provider: heroku
-  app: <ng-steam-app>
+  app: ng-steam-app
   api_key:
     secure: fd63dfcd-ec57-4cf8-bc43-03d45b4ff87b

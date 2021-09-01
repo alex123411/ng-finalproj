@@ -11,7 +11,8 @@ branches:
   - master
 
 deploy:
+  skip_cleanup: true
   provider: heroku
   app: ng-steam-app
   api_key:
-    secure: fd63dfcd-ec57-4cf8-bc43-03d45b4ff87b
+    secure: 60b6cf5e-6d27-4db9-90ee-abd7aaa88fa2

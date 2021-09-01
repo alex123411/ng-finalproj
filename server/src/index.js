@@ -29,7 +29,7 @@ const start = async () => {
         await mongoose.connect('mongodb+srv://alext:test1@cluster0.8zekx.mongodb.net/steam?retryWrites=true&w=majority', {
             useNewUrlParser: true, useUnifiedTopology: true
         });
-        app.listen(8081);
+        app.listen(process.env.PORT || 8081);
     } catch (err) {
         console.error(`Error on server startup: ${err.message}`);
     }

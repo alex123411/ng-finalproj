@@ -1,0 +1,17 @@
+<div class='registrationFormContainer'>
+    <form [formGroup]="registrationForm" class = 'registration-form'>
+        <div class="mb-3">
+            <label for="nickname" class="form-label">nickname: </label>
+            <input id="nickname"  class="form-control" type="text" formControlName="nickname">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">password: </label>
+            <input id="password"  class="form-control" type="password" formControlName="password">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">email: </label>
+            <input id="email"  class="form-control" type="text" formControlName="email">
+        </div>
+        <button (click)="registerUser()" type="button" class="btn btn-primary" for='nickname'>Register</button>
+    </form>
+</div>

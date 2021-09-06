@@ -1,0 +1,24 @@
+.card-text{
+    color: black;
+}
+
+.filters-col{
+    height: 100%;
+}
+
+.bd-layout {
+    grid-template-columns: 1fr 5fr;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-areas: "sidebar main";
+}
+
+label{
+    color: black;
+}
+
+.price-content-container{
+    margin-top: 5px;
+    background-color: white;
+    padding: 2px 3px;
+}

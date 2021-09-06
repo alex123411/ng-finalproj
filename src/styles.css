@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body{
+    background: url(https://store.akamai.steamstatic.com/public/images/v6/colored_body_top.png?v=2) center top no-repeat #1b2838;
+}
+
+p, label, h1, h3, h5{
+    color: white;
+}
+
+h5{
+    font: 500;
+}

@@ -1,0 +1,11 @@
+.card-text{
+    color: black;
+}
+.share-btn{
+    margin-top: 3px;
+}
+
+.friends-btns-col{
+    display: flex;
+    flex-direction: column
+}

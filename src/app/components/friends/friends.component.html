@@ -1,0 +1,42 @@
+<div class="container pt-5">
+<div class="m-5 py-3 px-5 rounded shadow friends-content-block">
+    <div>
+        <h2 class="mb-3">Friends</h2>
+        <div>
+            <h5 class="mb-2">Search friends:</h5>
+            <div class="w-100 h-100 d-flex">
+                <div class='col-md-10'>
+                    <input id='searchForFriendsInput' type="text" class="w-100 form-control ng-valid ng-dirty ng-touched" placeholder="Search Friends">
+                </div>
+                <div class='col-md-2 search-friends-btn-container'>
+                    <button (click)="findFriends()" class='btn btn-primary'>Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="add-friends-list-container">
+        <ul class="list-group list-group-flush" >
+            <li *ngFor='let friend of friendsToAdd' class="list-group-item">
+                <h4>{{friend.nickname}}</h4>
+                <button (click)="sendFriendRequest(friend.nickname)" class='btn btn-danger btn-small'>Add friend</button>
+            </li>
+        </ul>
+    </div>
+    <div class="friends-list-container">
+        <ul class="list-group list-group-flush" >
+            <li *ngFor='let friend of friends' class="list-group-item">
+                <h4>{{friend.nickname}}</h4>
+                <div *ngIf="friend.status == 'accepted'; else pendingButtons">
+                    <button (click)="removeFriend(friend.nickname)" class='btn btn-danger btn-small'>Remove friend</button>
+                </div>
+                <ng-template #pendingButtons>
+                    <div class = 'pending-status-buttons'>
+                        <button (click)="acceptFriend(friend.nickname)" class='btn btn-success btn-small'>Accept</button>
+                        <button (click)="rejectFriend(friend.nickname)" class='btn btn-danger btn-small'>Reject</button>
+                    </div>
+                </ng-template>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>

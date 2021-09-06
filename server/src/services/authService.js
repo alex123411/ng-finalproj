@@ -38,6 +38,7 @@ const forgotPassword = async ({email}) => {
     }
 }
   
+
 module.exports = {
     registration,
     logIn,

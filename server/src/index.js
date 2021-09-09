@@ -4,8 +4,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const cookieParser = require('cookie-parser');
-//
+const { dbConnection } = require('./config')
 app.use(cors());
 
 const {authRouter} = require('./controllers/authController'); 
@@ -33,14 +32,9 @@ app.use(authMiddleware);
 
 app.use('/api/user', userRouter);
 
-
-
-
-
-
 const start = async () => {
     try {
-        await mongoose.connect('mongodb+srv://alext:test1@cluster0.8zekx.mongodb.net/steam?retryWrites=true&w=majority', {
+        await mongoose.connect(dbConnection, {
             useNewUrlParser: true, useUnifiedTopology: true
         });
         app.listen(process.env.PORT || 8081);

@@ -5,17 +5,17 @@ const getProfileInfo = async (userId) => {
   try {
     const userInfo = await User.findById(userId);
     const user = {
-      "_id": userInfo._id,
-      "email": userInfo.email,
-      "nickname": userInfo.nickname,
-      "createdDate": userInfo.createdAt,
-      "friendList": userInfo.friendsList,
-      "gamesList": userInfo.gamesList,
-      "profilePhoto": userInfo.profilePhoto,
+      _id: userInfo._id,
+      email: userInfo.email,
+      nickname: userInfo.nickname,
+      createdDate: userInfo.createdAt,
+      friendList: userInfo.friendsList,
+      gamesList: userInfo.gamesList,
+      profilePhoto: userInfo.profilePhoto,
     };
     return user;
   } catch (err) {
-    return 0;
+    return null;
   }
 }
 
@@ -37,13 +37,13 @@ const findUsersByNickname = async (nickname) => {
 const sendFriendRequest = async (userId, nickname) => {
   try {
     const userWhoSends = await User.findById(userId);
-    const userToSend = await User.findOne({ "nickname": nickname });
+    const userToSend = await User.findOne({ nickname: nickname });
     userToSend.friendsList.forEach(element => {
       if (element.nickname == userWhoSends.nickname) {
         throw new badRequestError('this user has already recieved your request or he is in your friend list!')
       }
     });
-    userToSend.friendsList.push({ 'nickname': userWhoSends.nickname })
+    userToSend.friendsList.push({ nickname: userWhoSends.nickname })
     userToSend.save()
     return 'request SENT!'
   } catch (err) {
@@ -51,25 +51,7 @@ const sendFriendRequest = async (userId, nickname) => {
   }
 }
 
-const deleteProfile = async (userId) => {
-  await User.remove({ _id: userId });
-}
 
-
-const updateUserPassword = async (userId, oldPassword, newPassword) => {
-  const user = await User.findById(userId);
-
-  if (!user || oldPassword != user.password) {
-    return 0;
-  }
-
-
-  await User.findByIdAndUpdate(userId, {
-    $set: {
-      password: newPassword,
-    }
-  });
-};
 
 const addGameToUserLibrary = async (userId, game) => {
   const user = await User.findById({ _id: userId });
@@ -90,7 +72,7 @@ const removeFriend = async (userId, nickname) => {
   try {
     let i = 0;
     const userWhoRemoves = await User.findById(userId);
-    const userToRemove = await User.findOne({ "nickname": nickname });
+    const userToRemove = await User.findOne({ nickname: nickname });
     userWhoRemoves.friendsList.forEach(element => {
       if (element.nickname == userToRemove.nickname) {
         userWhoRemoves.friendsList.splice(i,1)
@@ -115,14 +97,14 @@ const acceptFriend = async (userId, nickname) => {
   try {
     let i = 0;
     const userWhoAccepts = await User.findById(userId);
-    const userToBeAccepted = await User.findOne({ "nickname": nickname });
+    const userToBeAccepted = await User.findOne({ nickname: nickname });
     userWhoAccepts.friendsList.forEach(element => {
       if (element.nickname == userToBeAccepted.nickname) {
         userWhoAccepts.friendsList[i].status = 'accepted'
       }
       i++;
     });
-    userToBeAccepted.friendsList.push({ 'nickname': userWhoAccepts.nickname , 'status': 'accepted'})
+    userToBeAccepted.friendsList.push({ nickname: userWhoAccepts.nickname , status: 'accepted'})
     userWhoAccepts.save()
     userToBeAccepted.save()
     return 'request SENT!'
@@ -132,11 +114,15 @@ const acceptFriend = async (userId, nickname) => {
 }
 const rejectFriend = async (userId, nickname) => {
   try {
+    
     let i = 0;
+    
     const userWhoRejects = await User.findById(userId);
     userWhoRejects.friendsList.forEach(element => {
       if (element.nickname == nickname) {
-        userWhoRemoves.friendsList.splice(1,i)
+        console.log(nickname)
+        console.log(element.nickname)
+        userWhoRejects.friendsList.splice(i,1)
         i++;
       }
     });
@@ -147,10 +133,12 @@ const rejectFriend = async (userId, nickname) => {
   }
 }
 
+const deleteProfile = async (userId) => {
+  await User.remove({ _id: userId });
+}
+
 module.exports = {
-  getProfileInfo,
-  deleteProfile,
-  updateUserPassword,
+  getProfileInfo,  
   addGameToUserLibrary,
   findUsersByNickname,
   sendFriendRequest,

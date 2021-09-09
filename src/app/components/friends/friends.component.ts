@@ -32,7 +32,7 @@ export class FriendsComponent implements OnInit{
 
   findFriends(){
     this.nicknameToFind = (<HTMLInputElement>document.getElementById('searchForFriendsInput')).value;
-    if (this.nicknameToFind != ''){
+    if (this.nicknameToFind){
       this.profileService.findUsersByNickname(this.nicknameToFind)
       .subscribe(
         res => {
@@ -47,10 +47,10 @@ export class FriendsComponent implements OnInit{
   }
 
   sendFriendRequest(nickname : string | undefined){
-    if(nickname != this.user.nickname){
+    if(nickname !== this.user.nickname){
       this.profileService.sendFriendRequest(nickname)
       .subscribe(
-        res => console.log(res),
+        res => {console.log('SENT')},
         err => {alert(err.error.message)}
       )
     } else {alert('It`s YOU!')}
@@ -61,7 +61,6 @@ export class FriendsComponent implements OnInit{
     this.profileService.removeFriend(nickname)
       .subscribe(
         res => {
-          console.log(res)
           let i = 0;
           this.friends.forEach(friend => {
             if(friend.nickname == nickname){this.friends.splice(i,1)}
@@ -75,9 +74,8 @@ export class FriendsComponent implements OnInit{
     this.profileService.acceptFriend(nickname)
       .subscribe(
         res => {
-          console.log(res)
           this.friends.forEach(friend => {
-            if(friend.nickname = nickname){friend.status = 'accepted'}
+            if(friend.nickname == nickname){friend.status = 'accepted'}
           });
         },
         err => {alert(err.error.message)}
@@ -86,7 +84,13 @@ export class FriendsComponent implements OnInit{
   rejectFriend(nickname : string | undefined){
     this.profileService.rejectFriend(nickname)
       .subscribe(
-        res => console.log(res),
+        res => {
+          let i = 0;
+          this.friends.forEach(friend => {
+            if(friend.nickname == nickname){this.friends.splice(i,1)}
+            i++;
+          });
+        },
         err => {alert(err.error.message)}
       )
   } 

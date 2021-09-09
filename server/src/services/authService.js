@@ -29,17 +29,8 @@ const logIn = async ({email, password}) => {
     return token;
 }
 
-const forgotPassword = async ({email}) => {
-    const user = await User.findOne({email});
-
-    if(!user)
-    {
-        throw new badRequestError('Can`t find profile with such email');
-    }
-}
   
 module.exports = {
     registration,
     logIn,
-    forgotPassword
 };

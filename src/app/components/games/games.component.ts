@@ -29,7 +29,7 @@ export class GamesComponent implements OnInit {
           this.games.forEach(game => {
             this.ganres.push(game.ganre)
           });
-          this.ganres = this.ganres.filter((v, i, a) => a.indexOf(v) === i)
+          this.ganres = this.ganres.filter((value, index, array) => array.indexOf(value) === index)
         },
         err => console.log(err)  
       )
@@ -39,7 +39,7 @@ export class GamesComponent implements OnInit {
     this.gamesService.addGameToUserLibrary(game)
     .subscribe(
       res => {
-        console.log(res);
+        console.log('added');
       },
       err => {
         console.log(err);

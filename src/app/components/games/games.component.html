@@ -1,0 +1,42 @@
+<div class="container-xxl my-md-4 bd-layout">
+    <aside class="bd-sidebar">
+        <div >
+            <ul class="list-group fw-normal pb-1 small">
+                <li class='list-group-item' *ngFor='let ganre of ganres'>
+                    <div class="form-check">
+                        <mat-checkbox (change)="filterGames($event, ganre)" value="" id={{ganre}}> </mat-checkbox>
+                        <label class="form-check-label" for={{ganre}}>
+                          {{ganre}}
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class='price-content-container'>
+                        <label for="customRange2" class="form-label">{{price}} $</label>
+                        <input #ranger (input)="priceChange(ranger.value)" type="range" class="form-range" min="0" max="13" step="1" value="13" id="customRange2">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <div class='row mt-1'>
+        <div class='col-md-3 mb-3' *ngFor='let game of games' >
+            <div *ngIf="price > game.price" class='card text-center'>
+                <img src={{game.photo}} class="card-img-top" alt="...">
+                <div class='card-body'>
+                    <h2 class='card-title'>{{game.name}}</h2>
+                    <div class='row'>
+                        <div class="col">
+                            <p class='card-text'>Price: {{game.price}}$</p>
+                            <p class='card-text'>Type: {{game.ganre}}</p>
+                        </div>
+                        <div class="col" *ngIf="logged">
+                            <button (click)="addToLibrary(game)" type="button" class="btn btn-primary">Add to
+                                library</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
